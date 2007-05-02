@@ -157,6 +157,7 @@ build()
 {
 	CONFIGURE_TOP=.. %configure2_5x \
 	--with-docdir=%{_docdir}/%{name}-%{version}	\
+	--enable-smtp		\
 	--enable-pop		\
 	--enable-imap		\
 	--enable-imap-edit-threads	\

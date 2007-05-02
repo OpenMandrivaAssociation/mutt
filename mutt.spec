@@ -183,7 +183,8 @@ build()
 	$@ 			\
 	--enable-nntp
 
-	%make
+	# no parallel make
+	make
 }
 
 # build normal version

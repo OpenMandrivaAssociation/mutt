@@ -17,7 +17,7 @@
 
 Name:		mutt
 Summary:	Text mode mail user agent
-Version:	1.5.14
+Version:	1.5.15
 Release:	%{release}
 License:	GPL
 Epoch:		1
@@ -64,14 +64,11 @@ Patch6:		mutt-1.5.11-gpg.patch
 
 # Compressed folder support, http://www.spinnaker.de/mutt/compressed/
 # http://www.mutt.org.ua/download/mutt-%{pversion}/patch-%{pversion}.rr.compressed.gz
-Patch100:	patch-1.5.14.rr.compressed.1
+Patch100:	patch-1.5.15.rr.compressed
 
 # NNTP support
 # http://www.mutt.org.ua/download/mutt-%{version}/patch-%{version}.vvv.nntp.gz
-Patch101:	patch-1.5.14.vvv.nntp
-
-# Save history to file, http://www.vinc17.org/mutt/#resources
-Patch102:	http://www.vinc17.org/mutt/patch-1.5.12.vl.savehist.1
+Patch101:	patch-1.5.15.vvv.nntp
 
 # Dynamically set xterm window title / icon name
 Patch104:	%{name}-1.5.5.1-xterm-title.patch
@@ -137,7 +134,6 @@ NOTE: This version of mutt is linked against ncurses with wide char
 %patch6 -p1 -b .gpg
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
-%patch102 -p1 -b .history
 %patch104 -p1 -b .xterm-title
 %patch106 -p1 -b .cve-2006-5298
 

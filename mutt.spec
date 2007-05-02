@@ -1,4 +1,4 @@
-%define rel			1
+%define rel			2
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names

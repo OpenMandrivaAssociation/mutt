@@ -1,4 +1,4 @@
-%define rel			3
+%define rel			4
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -124,11 +124,11 @@ one you're going to use.
 NOTE: This version of mutt is linked against ncurses with wide char
       support, and is useful for, say, people using UTF-8 locales.
 
-%package	manual
+%package	doc
 Summary:	Manual for Mutt, a text mode mail user agent
 Group:		Networking/Mail
 
-%description	manual
+%description	doc
 This is the complete manual for Mutt, in text and HTML formats.
 
 Mutt is a text mode mail user agent. Mutt supports color, threading,
@@ -283,7 +283,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_bindir}/mutt-utf8
 
-%files manual
+%files doc
 %defattr(-,root,root)
 %doc doc/manual.txt
 %doc doc/advancedusage.html doc/gettingstarted.html doc/tuning.html

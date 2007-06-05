@@ -1,4 +1,4 @@
-%define rel			4
+%define rel			5
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -57,6 +57,7 @@ Patch5:		mutt-1.5.11-mailcap.patch
 
 # defines gpg paths, aspell, and fallback charsets
 Patch6:		mutt-1.5.11-gpg.patch
+Patch7:		mutt-CVE-2007-2683.patch
 
 #
 # Patch 100- : external patches
@@ -147,6 +148,7 @@ one you're going to use.
 #%patch4 -p1 -b .no-ncurses-normal
 %patch5 -p1 -b .mailcap
 %patch6 -p1 -b .gpg
+%patch7 -p1 -b .CVE-2007-2683
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title

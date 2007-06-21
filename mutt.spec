@@ -1,4 +1,4 @@
-%define rel			5
+%define rel			1
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -17,7 +17,7 @@
 
 Name:		mutt
 Summary:	Text mode mail user agent
-Version:	1.5.15
+Version:	1.5.16
 Release:	%{release}
 License:	GPL
 Epoch:		1
@@ -43,7 +43,7 @@ Source10:	%{name}-Muttrc_compressed_folders.foot.bz2
 Patch1:		%{name}-1.3.15-tmpdef.patch
 
 # Tell user to install urlview instead of just barf at user
-Patch2:		%{name}-1.5.13-urlview.patch
+Patch2:         %{name}-1.5.16-urlview.patch
 
 # Allow non root users to install mutt
 Patch3:		%{name}-1.5.5.1-no-sgid.patch
@@ -57,7 +57,6 @@ Patch5:		mutt-1.5.11-mailcap.patch
 
 # defines gpg paths, aspell, and fallback charsets
 Patch6:		mutt-1.5.11-gpg.patch
-Patch7:		mutt-CVE-2007-2683.patch
 
 #
 # Patch 100- : external patches
@@ -65,11 +64,11 @@ Patch7:		mutt-CVE-2007-2683.patch
 
 # Compressed folder support, http://www.spinnaker.de/mutt/compressed/
 # http://www.mutt.org.ua/download/mutt-%{pversion}/patch-%{pversion}.rr.compressed.gz
-Patch100:	patch-1.5.15.rr.compressed
+Patch100:	patch-1.5.16.rr.compressed
 
 # NNTP support
 # http://www.mutt.org.ua/download/mutt-%{version}/patch-%{version}.vvv.nntp.gz
-Patch101:	patch-1.5.15.vvv.nntp
+Patch101:	patch-1.5.16.vvv.nntp
 
 # Dynamically set xterm window title / icon name
 Patch104:	%{name}-1.5.5.1-xterm-title.patch
@@ -148,7 +147,6 @@ one you're going to use.
 #%patch4 -p1 -b .no-ncurses-normal
 %patch5 -p1 -b .mailcap
 %patch6 -p1 -b .gpg
-%patch7 -p1 -b .CVE-2007-2683
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title
@@ -166,14 +164,14 @@ bzip2 -cd %{SOURCE10} >> Muttrc.head.in
 # Fix some bad references in the man pages
 # Reference to imapd is not fixed, since uw-imap/courier/cyrus all have
 # different paths
-perl -pi -e 's|/usr/local/bin|%{_bindir}|g; s|/usr/local/doc/mutt|%{_docdir}/%{name}-%{version}|g;' doc/*.man init.h
+perl -pi -e 's|/usr/local/bin|%{_bindir}|g; s|/usr/local/doc/mutt|%{_docdir}/%{name}|g;' doc/*.man init.h
 
 %build
 
 build()
 {
 	CONFIGURE_TOP=.. %configure2_5x \
-	--with-docdir=%{_docdir}/%{name}-%{version}	\
+	--with-docdir=%{_docdir}/%{name} \
 	--enable-smtp		\
 	--enable-pop		\
 	--enable-imap		\

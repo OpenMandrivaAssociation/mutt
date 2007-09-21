@@ -1,4 +1,4 @@
-%define rel			3
+%define rel			4
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -89,9 +89,6 @@ BuildRequires:	krb5-devel
 %if %enable_sasl2
 BuildRequires:	libsasl-devel >= 2.1
 %endif
-# http://archives.mandrakelinux.com/cooker/2005-06/msg01987.php
-Requires:	sendmail-command
-
 # It won't compile when sasl/sasl2 support is required in addition to pop
 #BuildRequires:	libsasl2-devel
 #if %enable_idn

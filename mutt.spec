@@ -36,7 +36,7 @@ Source10:	%{name}-Muttrc_compressed_folders.foot.bz2
 #
 
 #
-# Patch 1-99: Mandrake patches
+# Patch 1-99: Mandriva patches
 #
 
 # Set tmpdir to ~/tmp in sample config

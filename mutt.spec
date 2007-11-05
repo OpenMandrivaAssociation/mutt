@@ -1,4 +1,4 @@
-%define rel			4
+%define rel			1
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -17,7 +17,7 @@
 
 Name:		mutt
 Summary:	Text mode mail user agent
-Version:	1.5.16
+Version:	1.5.17
 Release:	%{release}
 License:	GPL
 Epoch:		1
@@ -64,11 +64,11 @@ Patch6:		mutt-1.5.11-gpg.patch
 
 # Compressed folder support, http://www.spinnaker.de/mutt/compressed/
 # http://www.mutt.org.ua/download/mutt-%{pversion}/patch-%{pversion}.rr.compressed.gz
-Patch100:	patch-1.5.16.rr.compressed
+Patch100:	patch-1.5.17.rr.compressed
 
 # NNTP support
 # http://www.mutt.org.ua/download/mutt-%{version}/patch-%{version}.vvv.nntp.gz
-Patch101:	patch-1.5.16.vvv.nntp
+Patch101:	patch-1.5.17.vvv.nntp
 
 # Dynamically set xterm window title / icon name
 Patch104:	%{name}-1.5.5.1-xterm-title.patch

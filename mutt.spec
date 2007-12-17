@@ -23,7 +23,6 @@ License:	GPL
 Epoch:		1
 Group:		Networking/Mail
 URL:		http://www.mutt.org/
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source:		ftp://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz
 Source1:	ftp://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz.asc
 # To make use of bzip2/gzip files

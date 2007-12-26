@@ -1,4 +1,4 @@
-%define rel			2
+%define rel			3
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -82,7 +82,7 @@ BuildRequires:	sendmail-command
 # the new nntp patch can now use these versions
 BuildRequires:	autoconf2.5 automake1.8
 # required by the header cache patch
-BuildRequires:  libdb-devel >= 4.2
+BuildRequires:  db4-devel >= 4.2
 %if %enable_krb5
 BuildRequires:	krb5-devel
 %endif

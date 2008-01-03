@@ -1,4 +1,4 @@
-%define rel			3
+%define rel			4
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -73,6 +73,13 @@ Patch101:	patch-1.5.17.vvv.nntp
 # Dynamically set xterm window title / icon name
 Patch104:	%{name}-1.5.5.1-xterm-title.patch
 
+# Sidebar support
+#  - homepage: http://www.lunar-linux.org/index.php?page=mutt-sidebar
+#  - download: http://lunar-linux.org/~tchan/mutt/patch-1.5.17.sidebar.20071102.txt
+#
+# warning, patch updated in order not to conflict with nntp patch (104)
+Patch105:	patch-1.5.17.sidebar.20071102.txt
+
 BuildRequires:	bzip2-devel
 BuildRequires:	linuxdoc-tools
 BuildRequires:	ncurses-devel
@@ -146,6 +153,7 @@ one you're going to use.
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title
+%patch105 -p1 -b .sidebar
 
 # needed by nntp patch
 aclocal -I m4

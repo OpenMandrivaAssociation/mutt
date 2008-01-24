@@ -1,4 +1,4 @@
-%define rel			4
+%define rel			5
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -101,6 +101,9 @@ BuildRequires:	libsasl-devel >= 2.1
 #if %enable_idn
 #BuildRequires:	idn-devel
 #endif
+
+# without it we have problems with attachments (e.g. .pdfs)
+Suggests: mailcap
 
 
 %description

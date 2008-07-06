@@ -1,4 +1,4 @@
-%define rel			5
+%define rel			1
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -17,7 +17,7 @@
 
 Name:		mutt
 Summary:	Text mode mail user agent
-Version:	1.5.17
+Version:	1.5.18
 Release:	%{release}
 License:	GPL
 Epoch:		1
@@ -43,7 +43,7 @@ Source10:	%{name}-Muttrc_compressed_folders.foot.bz2
 Patch1:		%{name}-1.3.15-tmpdef.patch
 
 # Tell user to install urlview instead of just barf at user
-Patch2:         %{name}-1.5.16-urlview.patch
+Patch2:         %{name}-1.5.18-urlview.patch
 
 # Allow non root users to install mutt
 Patch3:		%{name}-1.5.5.1-no-sgid.patch
@@ -64,11 +64,11 @@ Patch6:		mutt-1.5.11-gpg.patch
 
 # Compressed folder support, http://www.spinnaker.de/mutt/compressed/
 # http://www.mutt.org.ua/download/mutt-%{pversion}/patch-%{pversion}.rr.compressed.gz
-Patch100:	patch-1.5.17.rr.compressed
+Patch100:	patch-1.5.18.rr.compressed
 
 # NNTP support
 # http://www.mutt.org.ua/download/mutt-%{version}/patch-%{version}.vvv.nntp.gz
-Patch101:	patch-1.5.17.vvv.nntp
+Patch101:	patch-1.5.18.vvv.nntp
 
 # Dynamically set xterm window title / icon name
 Patch104:	%{name}-1.5.5.1-xterm-title.patch
@@ -78,7 +78,7 @@ Patch104:	%{name}-1.5.5.1-xterm-title.patch
 #  - download: http://lunar-linux.org/~tchan/mutt/patch-1.5.17.sidebar.20071102.txt
 #
 # warning, patch updated in order not to conflict with nntp patch (104)
-Patch105:	patch-1.5.17.sidebar.20071102.txt
+Patch105:	patch-1.5.18.sidebar.20080611.txt
 
 BuildRequires:	bzip2-devel
 BuildRequires:	linuxdoc-tools

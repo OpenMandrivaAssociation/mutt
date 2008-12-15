@@ -149,10 +149,10 @@ one you're going to use.
 %setup -q
 %patch1 -p1 -b .tmpdef
 %patch2 -p1 -b .urlview
-%patch3 -p1 -b .no-sgid
+%patch3 -p0 -b .no-sgid
 #%patch4 -p1 -b .no-ncurses-normal
 %patch5 -p1 -b .mailcap
-%patch6 -p1 -b .gpg
+%patch6 -p0 -b .gpg
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title

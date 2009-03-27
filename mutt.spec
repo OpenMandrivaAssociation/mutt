@@ -1,4 +1,4 @@
-%define rel			2
+%define rel			1
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -17,7 +17,7 @@
 
 Name:		mutt
 Summary:	Text mode mail user agent
-Version:	1.5.18
+Version:	1.5.19
 Release:	%{release}
 License:	GPL
 Epoch:		1
@@ -56,7 +56,7 @@ Patch4:		%{name}-1.5.5.1-ncurses-include.patch
 Patch5:		mutt-1.5.11-mailcap.patch
 
 # defines gpg paths, aspell, and fallback charsets
-Patch6:		mutt-1.5.11-gpg.patch
+Patch6:		mutt-1.5.19-gpg.patch
 
 #
 # Patch 100- : external patches
@@ -64,11 +64,11 @@ Patch6:		mutt-1.5.11-gpg.patch
 
 # Compressed folder support, http://www.spinnaker.de/mutt/compressed/
 # http://www.mutt.org.ua/download/mutt-%{pversion}/patch-%{pversion}.rr.compressed.gz
-Patch100:	patch-1.5.18.rr.compressed
+Patch100:	patch-1.5.19.rr.compressed
 
 # NNTP support
 # http://www.mutt.org.ua/download/mutt-%{version}/patch-%{version}.vvv.nntp.gz
-Patch101:	patch-1.5.18.vvv.nntp
+Patch101:	patch-1.5.19.vvv.nntp
 
 # Dynamically set xterm window title / icon name
 Patch104:	%{name}-1.5.5.1-xterm-title.patch
@@ -78,7 +78,7 @@ Patch104:	%{name}-1.5.5.1-xterm-title.patch
 #  - download: http://lunar-linux.org/~tchan/mutt/patch-1.5.17.sidebar.20071102.txt
 #
 # warning, patch updated in order not to conflict with nntp patch (104)
-Patch105:	patch-1.5.18.sidebar.20080611.txt
+Patch105:	patch-1.5.19.sidebar.20090308.txt
 
 BuildRequires:	bzip2-devel
 BuildRequires:	linuxdoc-tools
@@ -152,7 +152,7 @@ one you're going to use.
 %patch3 -p0 -b .no-sgid
 #%patch4 -p1 -b .no-ncurses-normal
 %patch5 -p1 -b .mailcap
-%patch6 -p0 -b .gpg
+%patch6 -p1 -b .gpg
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title

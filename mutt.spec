@@ -1,6 +1,8 @@
 %define rel			2
 %define release		%mkrel %rel
 
+%define _default_patch_fuzz 2
+
 # GNU libidn support for i18n'ed domain names
 # no effect for now, mutt expects old version of libidn
 %define enable_idn	0
@@ -16,15 +18,15 @@
 %define _requires_exceptions perl(timelocal.pl)
 
 Name:		mutt
-Summary:	Text mode mail user agent
-Version:	1.5.19
+Version:	1.5.20
 Release:	%{release}
-License:	GPL
 Epoch:		1
+
+Summary:	Text mode mail user agent
+License:	GPL
 Group:		Networking/Mail
-URL:		http://www.mutt.org/
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Source:		ftp://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz
+Url:		http://www.mutt.org/
+Source0:	ftp://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz
 Source1:	ftp://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz.asc
 # To make use of bzip2/gzip files
 Source10:	%{name}-Muttrc_compressed_folders.foot.bz2
@@ -56,7 +58,7 @@ Patch4:		%{name}-1.5.5.1-ncurses-include.patch
 Patch5:		mutt-1.5.11-mailcap.patch
 
 # defines gpg paths, aspell, and fallback charsets
-Patch6:		mutt-1.5.19-gpg.patch
+Patch6:		mutt-1.5.20-gpg.patch
 
 #
 # Patch 100- : external patches
@@ -64,22 +66,15 @@ Patch6:		mutt-1.5.19-gpg.patch
 
 # Compressed folder support, http://www.spinnaker.de/mutt/compressed/
 # http://www.mutt.org.ua/download/mutt-%{pversion}/patch-%{pversion}.rr.compressed.gz
-Patch100:	patch-1.5.19.rr.compressed
+Patch100:	patch-1.5.20.rr.compressed
 
 # NNTP support
 # http://www.mutt.org.ua/download/mutt-%{version}/patch-%{version}.vvv.nntp.gz
-Patch101:	patch-1.5.19.vvv.nntp
+Patch101:	patch-1.5.20.vvv.nntp
 
 # Dynamically set xterm window title / icon name
 Patch104:	%{name}-1.5.5.1-xterm-title.patch
 
-# Sidebar support
-#  - homepage: http://www.lunar-linux.org/index.php?page=mutt-sidebar
-#  - download: http://lunar-linux.org/~tchan/mutt/patch-1.5.17.sidebar.20071102.txt
-#
-# warning, patch updated in order not to conflict with nntp patch (104)
-Patch105:	patch-1.5.19.sidebar.20090308.txt
-Patch106:	mutt-1.5.19-gnutls.patch
 Patch107:	mutt-1.5.19-nulcert.diff
 
 BuildRequires:	bzip2-devel
@@ -103,6 +98,8 @@ BuildRequires:	libsasl-devel >= 2.1
 #if %enable_idn
 #BuildRequires:	idn-devel
 #endif
+
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 # without it we have problems with attachments (e.g. .pdfs)
 Suggests: mailcap
@@ -154,12 +151,10 @@ one you're going to use.
 %patch3 -p0 -b .no-sgid
 #%patch4 -p1 -b .no-ncurses-normal
 %patch5 -p1 -b .mailcap
-%patch6 -p1 -b .gpg
+%patch6 -p0 -b .gpg
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title
-%patch105 -p1 -b .sidebar
-%patch106 -p1 -b .CVE-2009-1390
 %patch107 -p0 -b .nulcert
 
 # needed by nntp patch
@@ -299,5 +294,3 @@ rm -rf %{buildroot}
 %doc doc/advancedusage.html doc/gettingstarted.html doc/tuning.html
 %doc doc/intro.html doc/mimesupport.html doc/reference.html
 %doc doc/configuration.html doc/index.html doc/miscellany.html
-
-

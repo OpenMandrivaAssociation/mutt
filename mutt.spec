@@ -1,4 +1,4 @@
-%define rel			1
+%define rel			2
 %define release		%mkrel %rel
 
 # GNU libidn support for i18n'ed domain names
@@ -79,6 +79,8 @@ Patch104:	%{name}-1.5.5.1-xterm-title.patch
 #
 # warning, patch updated in order not to conflict with nntp patch (104)
 Patch105:	patch-1.5.19.sidebar.20090308.txt
+Patch106:	mutt-1.5.19-gnutls.patch
+Patch107:	mutt-1.5.19-nulcert.diff
 
 BuildRequires:	bzip2-devel
 BuildRequires:	linuxdoc-tools
@@ -157,6 +159,8 @@ one you're going to use.
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title
 %patch105 -p1 -b .sidebar
+%patch106 -p1 -b .CVE-2009-1390
+%patch107 -p0 -b .nulcert
 
 # needed by nntp patch
 aclocal -I m4

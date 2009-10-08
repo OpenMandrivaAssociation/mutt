@@ -1,4 +1,4 @@
-%define rel			1
+%define rel			2
 %define release		%mkrel %rel
 
 %define _default_patch_fuzz 2
@@ -76,6 +76,10 @@ Patch101:	patch-1.5.20.vvv.nntp
 Patch104:	%{name}-1.5.5.1-xterm-title.patch
 
 Patch107:	mutt-1.5.19-nulcert.diff
+
+# Now maintained at http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44
+# Patch adapted from: patch-1.5.20.sidebar.20090619.txt
+Patch108:	mutt-1.5.20-sidebar.patch
 
 BuildRequires:	bzip2-devel
 BuildRequires:	linuxdoc-tools
@@ -156,6 +160,7 @@ one you're going to use.
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title
 %patch107 -p0 -b .nulcert
+%patch108 -p1
 
 # needed by nntp patch
 aclocal -I m4

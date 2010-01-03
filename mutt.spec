@@ -1,4 +1,4 @@
-%define rel			3
+%define rel			4
 %define release		%mkrel %rel
 
 %define _default_patch_fuzz 2
@@ -81,6 +81,9 @@ Patch107:	mutt-1.5.19-nulcert.diff
 # Patch adapted from: patch-1.5.20.sidebar.20090619.txt
 Patch108:	mutt-1.5.20-sidebar.patch
 
+# Patch adapted from: http://greek0.net/mutt.html
+Patch109:	mutt-1.5.12-indexcolor-3+cb.diff
+
 BuildRequires:	bzip2-devel
 BuildRequires:	linuxdoc-tools
 BuildRequires:	ncurses-devel
@@ -161,6 +164,7 @@ one you're going to use.
 %patch104 -p1 -b .xterm-title
 %patch107 -p0 -b .nulcert
 %patch108 -p1
+%patch109 -p1
 
 # needed by nntp patch
 aclocal -I m4

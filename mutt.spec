@@ -110,6 +110,7 @@ Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 # without it we have problems with attachments (e.g. .pdfs)
 Suggests: mailcap
+Suggests: mutt-utf8
 
 
 %description

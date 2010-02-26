@@ -1,4 +1,4 @@
-%define rel			6
+%define rel			7
 %define release		%mkrel %rel
 
 %define _default_patch_fuzz 2

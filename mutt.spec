@@ -1,4 +1,4 @@
-%define rel			7
+%define rel			8
 %define release		%mkrel %rel
 
 %define _default_patch_fuzz 2
@@ -59,6 +59,9 @@ Patch5:		mutt-1.5.11-mailcap.patch
 
 # defines gpg paths, aspell, and fallback charsets
 Patch6:		mutt-1.5.20-gpg.patch
+
+# stack is not defined under openssl 1.0.0 (http://dev.mutt.org/hg/mutt/rev/1cf34ea1f128)
+Patch7:		mutt-1.5.20-stack.patch
 
 #
 # Patch 100- : external patches
@@ -160,6 +163,7 @@ one you're going to use.
 #%patch4 -p1 -b .no-ncurses-normal
 %patch5 -p1 -b .mailcap
 %patch6 -p0 -b .gpg
+%patch7 -p1 -b .stack
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title

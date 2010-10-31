@@ -1,4 +1,4 @@
-%define rel			8
+%define rel			1
 %define release		%mkrel %rel
 
 %define _default_patch_fuzz 2
@@ -18,7 +18,7 @@
 %define _requires_exceptions perl(timelocal.pl)
 
 Name:		mutt
-Version:	1.5.20
+Version:	1.5.21
 Release:	%{release}
 Epoch:		1
 
@@ -61,7 +61,7 @@ Patch5:		mutt-1.5.11-mailcap.patch
 Patch6:		mutt-1.5.20-gpg.patch
 
 # stack is not defined under openssl 1.0.0 (http://dev.mutt.org/hg/mutt/rev/1cf34ea1f128)
-Patch7:		mutt-1.5.20-stack.patch
+#Patch7:		mutt-1.5.20-stack.patch
 
 #
 # Patch 100- : external patches
@@ -78,7 +78,8 @@ Patch101:	patch-1.5.20.vvv.nntp
 # Dynamically set xterm window title / icon name
 Patch104:	%{name}-1.5.5.1-xterm-title.patch
 
-Patch107:	mutt-1.5.19-nulcert.diff
+# Merged upstream
+#Patch107:	mutt-1.5.19-nulcert.diff
 
 # Now maintained at http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44
 # Patch adapted from: patch-1.5.20.sidebar.20090619.txt
@@ -163,11 +164,11 @@ one you're going to use.
 #%patch4 -p1 -b .no-ncurses-normal
 %patch5 -p1 -b .mailcap
 %patch6 -p0 -b .gpg
-%patch7 -p1 -b .stack
+#%patch7 -p1 -b .stack
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title
-%patch107 -p0 -b .nulcert
+#%patch107 -p0 -b .nulcert
 %patch108 -p1
 %patch109 -p1
 

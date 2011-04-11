@@ -1,4 +1,4 @@
-%define rel			3
+%define rel			4
 %define release		%mkrel %rel
 
 %define _default_patch_fuzz 2
@@ -63,6 +63,8 @@ Patch6:		mutt-1.5.20-gpg.patch
 # stack is not defined under openssl 1.0.0 (http://dev.mutt.org/hg/mutt/rev/1cf34ea1f128)
 #Patch7:		mutt-1.5.20-stack.patch
 
+Patch8:		mutt-1.5.21-db51.patch
+
 #
 # Patch 100- : external patches
 #
@@ -97,7 +99,7 @@ BuildRequires:	sendmail-command
 # the new nntp patch can now use these versions
 BuildRequires:	autoconf2.5 automake1.8
 # required by the header cache patch
-BuildRequires:  db4-devel >= 4.2
+BuildRequires:  db-devel >= 4.2
 %if %enable_krb5
 BuildRequires:	krb5-devel
 %endif
@@ -161,14 +163,12 @@ one you're going to use.
 %patch1 -p1 -b .tmpdef
 %patch2 -p1 -b .urlview
 %patch3 -p0 -b .no-sgid
-#%patch4 -p1 -b .no-ncurses-normal
 %patch5 -p1 -b .mailcap
 %patch6 -p0 -b .gpg
-#%patch7 -p1 -b .stack
+%patch8 -p0 -b .db5
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title
-#%patch107 -p0 -b .nulcert
 %patch108 -p1
 %patch109 -p1
 
@@ -195,7 +195,6 @@ build()
 	--enable-smtp		\
 	--enable-pop		\
 	--enable-imap		\
-	--enable-imap-edit-threads	\
 	--enable-nfs-fix	\
 	--with-ssl		\
 	--enable-compressed	\

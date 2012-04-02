@@ -1,6 +1,3 @@
-%define rel			4
-%define release		%mkrel %rel
-
 %define _default_patch_fuzz 2
 
 # GNU libidn support for i18n'ed domain names
@@ -19,7 +16,7 @@
 
 Name:		mutt
 Version:	1.5.21
-Release:	%{release}
+Release:	5
 Epoch:		1
 
 Summary:	Text mode mail user agent
@@ -90,6 +87,8 @@ Patch108:	mutt-1.5.20-sidebar.patch
 # Patch adapted from: http://greek0.net/mutt.html
 Patch109:	mutt-1.5.12-indexcolor-3+cb.diff
 
+Patch110:	mutt-1.5.21-CVE-2011-1429.diff
+
 BuildRequires:	bzip2-devel
 BuildRequires:	linuxdoc-tools
 BuildRequires:	ncurses-devel
@@ -111,8 +110,6 @@ BuildRequires:	libsasl-devel >= 2.1
 #if %enable_idn
 #BuildRequires:	idn-devel
 #endif
-
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 # without it we have problems with attachments (e.g. .pdfs)
 Suggests: mailcap
@@ -171,6 +168,7 @@ one you're going to use.
 %patch104 -p1 -b .xterm-title
 %patch108 -p1
 %patch109 -p1
+%patch110 -p0 -b .CVE-2011-1429
 
 # needed by nntp patch
 aclocal -I m4
@@ -243,7 +241,6 @@ make update-doc
 popd
 
 %install
-rm -rf %{buildroot}
 
 pushd mutt-utf-8
 %makeinstall_std
@@ -280,11 +277,7 @@ fi
 %triggerpostun -- %{name} < %{epoch}:1.5
 update-alternatives --install %{_bindir}/mutt mutt %{_bindir}/mutt-normal 10
 
-%clean
-rm -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc BEWARE COPYRIGHT NEWS OPS* PATCHES*
 %doc README* TODO UPDATING VERSION
 %doc mime.types.dist Muttrc.dist
@@ -299,11 +292,9 @@ rm -rf %{buildroot}
 %attr(2755, root, mail) %{_bindir}/mutt_dotlock
 
 %files utf8
-%defattr(-,root,root)
 %{_bindir}/mutt-utf8
 
 %files doc
-%defattr(-,root,root)
 %doc doc/manual.txt
 %doc doc/advancedusage.html doc/gettingstarted.html doc/tuning.html
 %doc doc/intro.html doc/mimesupport.html doc/reference.html

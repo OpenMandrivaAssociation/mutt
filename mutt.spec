@@ -92,7 +92,7 @@ Patch110:	mutt-1.5.21-CVE-2011-1429.diff
 BuildRequires:	bzip2-devel
 BuildRequires:	linuxdoc-tools
 BuildRequires:	ncurses-devel
-BuildRequires:	cursesw-devel
+BuildRequires:	ncursesw-devel
 BuildRequires:	openssl-devel
 BuildRequires:	sendmail-command
 # the new nntp patch can now use these versions

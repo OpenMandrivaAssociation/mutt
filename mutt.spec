@@ -62,6 +62,8 @@ Patch6:		mutt-1.5.20-gpg.patch
 
 Patch8:		mutt-1.5.21-db53.patch
 
+Patch9:       mutt-1.5.21-automake1.12.patch
+
 #
 # Patch 100- : external patches
 #
@@ -163,6 +165,7 @@ one you're going to use.
 %patch5 -p1 -b .mailcap
 %patch6 -p0 -b .gpg
 %patch8 -p0 -b .db5
+%patch9 -p0 -b .automake1.12
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title

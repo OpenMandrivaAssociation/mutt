@@ -16,7 +16,7 @@
 
 Name:		mutt
 Version:	1.5.21
-Release:	5
+Release:	6
 Epoch:		1
 
 Summary:	Text mode mail user agent
@@ -60,7 +60,7 @@ Patch6:		mutt-1.5.20-gpg.patch
 # stack is not defined under openssl 1.0.0 (http://dev.mutt.org/hg/mutt/rev/1cf34ea1f128)
 #Patch7:		mutt-1.5.20-stack.patch
 
-Patch8:		mutt-1.5.21-db51.patch
+Patch8:		mutt-1.5.21-db53.patch
 
 #
 # Patch 100- : external patches

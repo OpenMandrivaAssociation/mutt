@@ -1,0 +1,12 @@
+diff -p -up mutt-1.5.18/doc/Muttrc.head.urlview mutt-1.5.18/doc/Muttrc.head
+--- mutt-1.5.18/doc/Muttrc.head.urlview	2008-01-30 02:26:50.000000000 -0200
++++ mutt-1.5.18/doc/Muttrc.head	2008-07-05 22:24:20.000000000 -0300
+@@ -18,7 +18,7 @@ macro index \eb "<search>~b " "search in
+ # simulate the old url menu
+ macro index,pager,attach,compose \cb "\
+ <enter-command> set my_pipe_decode=\$pipe_decode pipe_decode<Enter>\
+-<pipe-message> urlview<Enter>\
++<pipe-message> ([ -x /usr/bin/urlview ] && urlview || echo \"Please install the urlview package\")<Enter>\
+ <enter-command> set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
+ "call urlview to extract URLs out of a message"
+ 

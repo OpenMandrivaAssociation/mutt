@@ -1,0 +1,20 @@
+--- mutt-1.5.5.1/configure.in.ncurses	2004-01-23 20:23:31.000000000 +0800
++++ mutt-1.5.5.1/configure.in	2004-01-23 21:37:56.637794472 +0800
+@@ -232,14 +232,13 @@
+ 	done
+         AC_CHECK_LIB($cf_ncurses, initscr,
+                 [MUTTLIBS="$MUTTLIBS -l$cf_ncurses"
+-                if test x$mutt_cv_curses = x/usr -a -d /usr/include/ncurses; then
+-                        CPPFLAGS="$CPPFLAGS -I/usr/include/ncurses"
+-                fi
+-		
+                 if test "$cf_ncurses" = ncursesw; then
+ 			AC_CHECK_HEADERS(ncursesw/ncurses.h,[cf_cv_ncurses_header="ncursesw/ncurses.h"])
+ 		else
+ 			AC_CHECK_HEADERS(ncurses.h,[cf_cv_ncurses_header="ncurses.h"])
++			if test x$mutt_cv_curses = x/usr -a -d /usr/include/ncurses; then
++				CPPFLAGS="$CPPFLAGS -I/usr/include/ncurses"
++			fi
+ 		fi],
+ 
+                 [CF_CURSES_LIBS])

@@ -1,0 +1,11 @@
+--- mutt-1.3.15/contrib/sample.muttrc.org	Wed Mar  1 11:10:30 2000
++++ mutt-1.3.15/contrib/sample.muttrc	Tue Mar  6 22:55:45 2001
+@@ -99,7 +99,7 @@
+ #set strict_threads		# don't thread by subject
+ set tilde			# virtual lines to pad blank lines in the pager
+ #set timeout=0			# timeout for prompt in the index menu
+-#set tmpdir=~/tmp		# where to store temp files
++set tmpdir=~/tmp		# where to store temp files
+ #set to_chars=" +TCF"
+ #set use_8bitmime		# enable the -B8BITMIME sendmail flag
+ set nouse_domain		# don't qualify local addresses with $domain

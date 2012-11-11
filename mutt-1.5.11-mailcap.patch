@@ -1,0 +1,21 @@
+--- mutt-1.5.11/rfc1524.c_old	2006-05-30 18:25:19.000000000 +0200
++++ mutt-1.5.11/rfc1524.c	2006-05-30 19:31:40.000000000 +0200
+@@ -99,6 +99,18 @@
+       }
+       else if (command[x] == 's' && filename != NULL)
+       {
++			/* if parameter is "%s" (with the quotes) don't quote 
++			 * the filename */
++			if (command[x-2] == '"') {
++				int i;
++
++				for(i = 0; y < sizeof(buf) && filename[i]; i++) {
++					if(filename[i] == '"' || filename[i] == '`')
++						buf[y++] = '\\';
++					buf[y++] = filename[i];
++				}
++  				buf[y]   = '\0';
++			} else
+ 	y += mutt_quote_filename (buf + y, sizeof (buf) - y, filename);
+ 	needspipe = FALSE;
+       }

@@ -1,0 +1,128 @@
+--- init.h	2009-06-13 23:35:21.000000000 +0200
++++ init.h	2009-09-23 16:49:30.000000000 +0200
+@@ -78,7 +78,7 @@
+ #endif /* _MAKEDOC */
+ 
+ #ifndef ISPELL
+-#define ISPELL "ispell"
++#define ISPELL "/usr/bin/aspell -c"
+ #endif
+ 
+ struct option_t MuttVars[] = {
+@@ -1685,7 +1685,7 @@
+   ** subprocess failed.
+   ** (PGP only)
+   */
+-  { "pgp_clearsign_command",	DT_STR,	R_NONE, UL &PgpClearSignCommand, 0 },
++  { "pgp_clearsign_command",	DT_STR,	R_NONE, UL &PgpClearSignCommand, UL "/usr/bin/gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a ? %f" },
+   /*
+   ** .pp
+   ** This format is used to create an old-style ``clearsigned'' PGP
+@@ -1696,7 +1696,7 @@
+   ** possible \fCprintf(3)\fP-like sequences.
+   ** (PGP only)
+   */
+-  { "pgp_decode_command",       DT_STR, R_NONE, UL &PgpDecodeCommand, 0},
++  { "pgp_decode_command",       DT_STR, R_NONE, UL &PgpDecodeCommand, UL "/usr/bin/gpg %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"},
+   /*
+   ** .pp
+   ** This format strings specifies a command which is used to decode
+@@ -1719,7 +1719,7 @@
+   ** alongside the documentation.
+   ** (PGP only)
+   */
+-  { "pgp_decrypt_command", 	DT_STR, R_NONE, UL &PgpDecryptCommand, 0},
++  { "pgp_decrypt_command", 	DT_STR, R_NONE, UL &PgpDecryptCommand, UL "/usr/bin/gpg   %?p?--passphrase-fd 0? --no-verbose --quiet  --batch  --output - %f"},
+   /*
+   ** .pp
+   ** This command is used to decrypt a PGP encrypted message.
+@@ -1728,7 +1728,7 @@
+   ** possible \fCprintf(3)\fP-like sequences.
+   ** (PGP only)
+   */
+-  { "pgp_encrypt_only_command", DT_STR, R_NONE, UL &PgpEncryptOnlyCommand, 0},
++  { "pgp_encrypt_only_command", DT_STR, R_NONE, UL &PgpEncryptOnlyCommand, UL "pgpewrap /usr/bin/gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"},
+   /*
+   ** .pp
+   ** This command is used to encrypt a body part without signing it.
+@@ -1737,7 +1737,7 @@
+   ** possible \fCprintf(3)\fP-like sequences.
+   ** (PGP only)
+   */
+-  { "pgp_encrypt_sign_command",	DT_STR, R_NONE, UL &PgpEncryptSignCommand, 0},
++  { "pgp_encrypt_sign_command",	DT_STR, R_NONE, UL &PgpEncryptSignCommand, UL "pgpewrap /usr/bin/gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"},
+   /*
+   ** .pp
+   ** This command is used to both sign and encrypt a body part.
+@@ -1766,7 +1766,7 @@
+   ** .pp
+   ** (PGP only)
+   */
+-  { "pgp_export_command", 	DT_STR, R_NONE, UL &PgpExportCommand, 0},
++  { "pgp_export_command", 	DT_STR, R_NONE, UL &PgpExportCommand, UL "/usr/bin/gpg   --no-verbose --export --armor %r"},
+   /*
+   ** .pp
+   ** This command is used to export a public key from the user's
+@@ -1801,7 +1801,7 @@
+   ** if you want to play interesting key selection games.
+   ** (PGP only)
+   */
+-  { "pgp_import_command",	DT_STR, R_NONE, UL &PgpImportCommand, 0},
++  { "pgp_import_command",	DT_STR, R_NONE, UL &PgpImportCommand, UL "/usr/bin/gpg  --no-verbose --import %f" },
+   /*
+   ** .pp
+   ** This command is used to import a key from a message into
+@@ -1811,7 +1811,7 @@
+   ** possible \fCprintf(3)\fP-like sequences.
+   ** (PGP only)
+   */
+-  { "pgp_list_pubring_command", DT_STR, R_NONE, UL &PgpListPubringCommand, 0},
++  { "pgp_list_pubring_command", DT_STR, R_NONE, UL &PgpListPubringCommand, UL "/usr/bin/gpg   --no-verbose --batch --quiet   --with-colons --list-keys %r"},
+   /*
+   ** .pp
+   ** This command is used to list the public key ring's contents.  The
+@@ -1827,7 +1827,7 @@
+   ** possible \fCprintf(3)\fP-like sequences.
+   ** (PGP only)
+   */
+-  { "pgp_list_secring_command",	DT_STR, R_NONE, UL &PgpListSecringCommand, 0},
++  { "pgp_list_secring_command",	DT_STR, R_NONE, UL &PgpListSecringCommand, UL "/usr/bin/gpg   --no-verbose --batch --quiet   --with-colons --list-secret-keys %r"},
+   /*
+   ** .pp
+   ** This command is used to list the secret key ring's contents.  The
+@@ -1911,7 +1911,7 @@
+   ** keyid form to specify your key (e.g. \fC0x00112233\fP).
+   ** (PGP only)
+   */
+-  { "pgp_sign_command",		DT_STR, R_NONE, UL &PgpSignCommand, 0},
++  { "pgp_sign_command",		DT_STR, R_NONE, UL &PgpSignCommand, UL "/usr/bin/gpg    --no-verbose --batch --quiet   --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"},
+   /*
+   ** .pp
+   ** This command is used to create the detached PGP signature for a
+@@ -1959,7 +1959,7 @@
+   ** If \fIset\fP, mutt will use a possibly-running \fCgpg-agent(1)\fP process.
+   ** (PGP only)
+   */
+-  { "pgp_verify_command", 	DT_STR, R_NONE, UL &PgpVerifyCommand, 0},
++  { "pgp_verify_command", 	DT_STR, R_NONE, UL &PgpVerifyCommand, UL "/usr/bin/gpg   --no-verbose --quiet  --batch  --output - --verify %s %f"},
+   /*
+   ** .pp
+   ** This command is used to verify PGP signatures.
+@@ -1968,7 +1968,7 @@
+   ** possible \fCprintf(3)\fP-like sequences.
+   ** (PGP only)
+   */
+-  { "pgp_verify_key_command",	DT_STR, R_NONE, UL &PgpVerifyKeyCommand, 0},
++  { "pgp_verify_key_command",	DT_STR, R_NONE, UL &PgpVerifyKeyCommand, UL "/usr/bin/gpg   --verbose --batch  --fingerprint --check-sigs %r" },
+   /*
+   ** .pp
+   ** This command is used to verify key information from the key selection
+@@ -2450,7 +2450,7 @@
+   ** For the pager, this variable specifies the number of lines shown
+   ** before search results. By default, search results will be top-aligned.
+   */
+-  { "send_charset",	DT_STR,  R_NONE, UL &SendCharset, UL "us-ascii:iso-8859-1:utf-8" },
++  { "send_charset",	DT_STR,  R_NONE, UL &SendCharset, UL "iso-8859-1:iso-8859-2:iso-8859-7:iso-8859-9:koi8-r:iso-2022-jp:euc-kr:gb2312:big5:utf-8" },
+   /*
+   ** .pp
+   ** A colon-delimited list of character sets for outgoing messages. Mutt will use the

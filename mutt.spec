@@ -1,3 +1,6 @@
+%define rel			6
+%define release		%mkrel %rel
+
 %define _default_patch_fuzz 2
 
 # GNU libidn support for i18n'ed domain names
@@ -16,7 +19,7 @@
 
 Name:		mutt
 Version:	1.5.21
-Release:	6
+Release:	%{release}
 Epoch:		1
 
 Summary:	Text mode mail user agent
@@ -60,9 +63,7 @@ Patch6:		mutt-1.5.20-gpg.patch
 # stack is not defined under openssl 1.0.0 (http://dev.mutt.org/hg/mutt/rev/1cf34ea1f128)
 #Patch7:		mutt-1.5.20-stack.patch
 
-Patch8:		mutt-1.5.21-db53.patch
-
-Patch9:       mutt-1.5.21-automake1.12.patch
+Patch8:		mutt-1.5.21-db51.patch
 
 #
 # Patch 100- : external patches
@@ -93,25 +94,22 @@ Patch110:	mutt-1.5.21-CVE-2011-1429.diff
 
 BuildRequires:	bzip2-devel
 BuildRequires:	linuxdoc-tools
-BuildRequires:	ncurses-devel
-BuildRequires:	ncursesw-devel
+BuildRequires:  pkgconfig(ncursesw)
+BuildRequires:  pkgconfig(ncurses)
 BuildRequires:	openssl-devel
 BuildRequires:	sendmail-command
 # the new nntp patch can now use these versions
 BuildRequires:	autoconf2.5 automake1.8
 # required by the header cache patch
-BuildRequires:  db-devel >= 4.2
+BuildRequires:  db-devel >= 5.2
 %if %enable_krb5
 BuildRequires:	krb5-devel
 %endif
 %if %enable_sasl2
 BuildRequires:	libsasl-devel >= 2.1
 %endif
-# It won't compile when sasl/sasl2 support is required in addition to pop
-#BuildRequires:	libsasl2-devel
-#if %enable_idn
-#BuildRequires:	idn-devel
-#endif
+
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 # without it we have problems with attachments (e.g. .pdfs)
 Suggests: mailcap
@@ -165,7 +163,6 @@ one you're going to use.
 %patch5 -p1 -b .mailcap
 %patch6 -p0 -b .gpg
 %patch8 -p0 -b .db5
-%patch9 -p0 -b .automake1.12
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title
@@ -173,11 +170,8 @@ one you're going to use.
 %patch109 -p1
 %patch110 -p0 -b .CVE-2011-1429
 
-# needed by nntp patch
-aclocal -I m4
-autoheader
-automake --foreign
-autoconf
+sed -i 's/AM_C_PROTOTYPES//g' configure.ac
+autoreconf -fi
 
 # Append changes to Muttrc to make use of bzip2/gzip mbox
 bzip2 -cd %{SOURCE10} >> Muttrc.head.in
@@ -244,6 +238,7 @@ make update-doc
 popd
 
 %install
+rm -rf %{buildroot}
 
 pushd mutt-utf-8
 %makeinstall_std
@@ -280,7 +275,11 @@ fi
 %triggerpostun -- %{name} < %{epoch}:1.5
 update-alternatives --install %{_bindir}/mutt mutt %{_bindir}/mutt-normal 10
 
+%clean
+rm -rf %{buildroot}
+
 %files -f %{name}.lang
+%defattr(-,root,root)
 %doc BEWARE COPYRIGHT NEWS OPS* PATCHES*
 %doc README* TODO UPDATING VERSION
 %doc mime.types.dist Muttrc.dist
@@ -295,10 +294,257 @@ update-alternatives --install %{_bindir}/mutt mutt %{_bindir}/mutt-normal 10
 %attr(2755, root, mail) %{_bindir}/mutt_dotlock
 
 %files utf8
+%defattr(-,root,root)
 %{_bindir}/mutt-utf8
 
 %files doc
+%defattr(-,root,root)
 %doc doc/manual.txt
 %doc doc/advancedusage.html doc/gettingstarted.html doc/tuning.html
 %doc doc/intro.html doc/mimesupport.html doc/reference.html
 %doc doc/configuration.html doc/index.html doc/miscellany.html
+
+
+%changelog
+* Mon Apr 02 2012 Oden Eriksson <oeriksson@mandriva.com> 1:1.5.21-4.1
+- P110: security fix for CVE-2011-1429 (upstream)
+
+* Mon Apr 11 2011 Funda Wang <fwang@mandriva.org> 1:1.5.21-4mdv2011.0
++ Revision: 652449
+- build with db5.1
+
+* Fri Apr 01 2011 RÃ©my Clouard <shikamaru@mandriva.org> 1:1.5.21-3
++ Revision: 649679
+- Fix sidebar patch: readd sidebar_sort
+
+* Thu Dec 23 2010 Lev Givon <lev@mandriva.org> 1:1.5.21-2mdv2011.0
++ Revision: 624136
+- Fix misaligned Security line on composition screen.
+
+* Sun Oct 31 2010 RÃ©my Clouard <shikamaru@mandriva.org> 1:1.5.21-1mdv2011.0
++ Revision: 590961
+- Bump to 1.5.21
+- apply sidebar patch from http://spacehopper.org/mutt/sidebar-5302767aa6aa.gz
+  (thanks lev for the tip)
+- rediff most patches (see below for the touchy ones)
+- comment out patch107 (merged upstream, peer review would be appreciated)
+- nntp patch rediffed (peer review please ? :) )
+
+* Mon Apr 05 2010 Eugeni Dodonov <eugeni@mandriva.com> 1:1.5.20-8mdv2010.1
++ Revision: 531864
+- P7: properly handle subjectAltNames under openssl-1.0.0.
+
+* Fri Feb 26 2010 Oden Eriksson <oeriksson@mandriva.com> 1:1.5.20-7mdv2010.1
++ Revision: 511592
+- rebuilt against openssl-0.9.8m
+
+* Mon Jan 25 2010 RÃ©my Clouard <shikamaru@mandriva.org> 1:1.5.20-6mdv2010.1
++ Revision: 496291
+- add mutt-utf8 as a suggests
+
+* Wed Jan 06 2010 RÃ©my Clouard <shikamaru@mandriva.org> 1:1.5.20-5mdv2010.1
++ Revision: 486870
+- fix a bug where hilighted line in the index was wrongly redrawn
+
+* Sun Jan 03 2010 RÃ©my Clouard <shikamaru@mandriva.org> 1:1.5.20-4mdv2010.1
++ Revision: 485893
+- add patch from previous commit
+- add indexcolor patch
+
+* Fri Jan 01 2010 Oden Eriksson <oeriksson@mandriva.com> 1:1.5.20-3mdv2010.1
++ Revision: 484725
+- rebuilt against bdb 4.8
+
+* Thu Oct 08 2009 Eugeni Dodonov <eugeni@mandriva.com> 1:1.5.20-2mdv2010.0
++ Revision: 455940
+- Updated to new sidebar patch.
+
+* Wed Sep 23 2009 JÃ©rÃ´me Quelin <jquelin@mandriva.org> 1:1.5.20-1mdv2010.0
++ Revision: 447815
+- oops, should reset rel
+- update to 1.5.20
+- updated manually gpg patch (don't we have an upstream url?
+- updated vvv and rr.compressed patches with their upstream version
+- removed sidebar patch which is not maintained upstream, doesn't apply
+  cleanly, and is not really useful (i was the original requester for
+  its inclusion)
+
+* Wed Sep 23 2009 Oden Eriksson <oeriksson@mandriva.com> 1:1.5.19-2mdv2010.0
++ Revision: 447772
+- P106: security fix for CVE-2009-1390 (redhat)
+- P107: security fix for nul cert spoof
+
+* Tue Jun 16 2009 Lev Givon <lev@mandriva.org> 1:1.5.19-1mdv2010.0
++ Revision: 386370
+- Update to 1.5.19.
+  Update included external patches (nntp, compression, sidebar).
+
+* Mon Dec 15 2008 Oden Eriksson <oeriksson@mandriva.com> 1:1.5.18-2mdv2009.1
++ Revision: 314512
+- rediffed fuzzy patches
+- rebuilt against db4.7
+
+* Sun Jul 06 2008 Herton Ronaldo Krzesinski <herton@mandriva.com.br> 1:1.5.18-1mdv2009.0
++ Revision: 232031
+- Updated to version 1.5.18
+- Rediffed urlview patch.
+- Added updated versions of included external patches (compressed folder
+  support, NNTP support and Sidebar support).
+
+* Thu Jan 24 2008 Ademar de Souza Reis Jr <ademar@mandriva.com.br> 1:1.5.17-5mdv2008.1
++ Revision: 157701
+- add mailcap as suggestion (w/out it, .pdfs are attached as
+  text/plain and get scrambled)
+
+* Thu Jan 03 2008 JÃ©rÃ´me Quelin <jquelin@mandriva.org> 1:1.5.17-4mdv2008.1
++ Revision: 142102
+- adding sidebar support (fixing bug 29371)
+
+* Thu Dec 27 2007 Oden Eriksson <oeriksson@mandriva.com> 1:1.5.17-3mdv2008.1
++ Revision: 138191
+- rebuilt against bdb 4.6.x libs
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Mon Nov 12 2007 Andreas Hasenack <andreas@mandriva.com> 1:1.5.17-2mdv2008.1
++ Revision: 108133
+- rebuild to get correct permissions on manpages (lzma bug)
+
+* Mon Nov 05 2007 Andreas Hasenack <andreas@mandriva.com> 1:1.5.17-1mdv2008.1
++ Revision: 106022
+- updated to version 1.5.17
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - s/mandrake/mandriva/
+
+* Fri Sep 21 2007 Andreas Hasenack <andreas@mandriva.com> 1:1.5.16-4mdv2008.0
++ Revision: 92110
+- mutt doesn't need an external MTA anymore: it has builtin smtp support now
+
+* Mon Sep 17 2007 Andreas Hasenack <andreas@mandriva.com> 1:1.5.16-3mdv2008.0
++ Revision: 89320
+- drop CVE-2006-5298 patch, it was already fixed upstream in a different way (#29916)
+
+* Wed Jun 27 2007 Andreas Hasenack <andreas@mandriva.com> 1:1.5.16-2mdv2008.0
++ Revision: 45052
+- rebuild with new rpm-mandriva-setup (-fstack-protector)
+
+* Thu Jun 21 2007 Andreas Hasenack <andreas@mandriva.com> 1:1.5.16-1mdv2008.0
++ Revision: 42310
+- updated to version 1.5.16
+- fixed doc dir according to new policy
+- dropped CVE-2007-2683 security patch, already applied
+- redid/updated urlview, nntp and compressed patches
+- added security fix for CVE-2007-2683 (Closes: #31191)
+
+* Wed May 16 2007 Gustavo De Nardin <gustavodn@mandriva.com> 1:1.5.15-4mdv2008.0
++ Revision: 27316
+- renamed just introduced mutt-manual subpackage to mutt-doc (no Obsoletes)
+
+* Wed May 16 2007 Gustavo De Nardin <gustavodn@mandriva.com> 1:1.5.15-3mdv2008.0
++ Revision: 27137
+- introduce mutt-manual subpackage, with the full manual for Mutt
+
+* Wed May 02 2007 Andreas Hasenack <andreas@mandriva.com> 1:1.5.15-2mdv2008.0
++ Revision: 20595
+- disabled parallel make, doesn't work
+- forgot to enable smtp support
+- updated to version 1.5.15 (smtp support \o/)
+- updated patches for this version
+
+
+* Fri Mar 02 2007 Andreas Hasenack <andreas@mandriva.com> 1.5.14-1mdv2007.0
++ Revision: 131589
+- updated to version 1.5.14
+- removed CVE-2006-5297 patch, already applied
+- updated external patches
+
+* Wed Nov 29 2006 Andreas Hasenack <andreas@mandriva.com> 1:1.5.13-1mdv2007.1
++ Revision: 88789
+- updated to version 1.5.13
+- updated many patches
+
+* Mon Oct 30 2006 Andreas Hasenack <andreas@mandriva.com> 1:1.5.11-6mdv2007.1
++ Revision: 73825
+- added patches for CVE-2006-5297 and CVE-2006-5298
+  (#26787)
+- rebuild with new ncurses (5.5-1.20051029.3mdv2007.0)
+- reverted back to 1.5.11: 1.5.12 as it was committed doesn't build
+  and we are in freeze anyway
+
+  + JÃ©rÃ´me Soyer <saispo@mandriva.org>
+    - Remove patch105
+    - New release 1.5.12
+
+* Sat Jul 01 2006 Andreas Hasenack <andreas@mandriva.com> 1:1.5.11-4mdv2007.0
++ Revision: 38203
+- bunzipped the remaining patches
+- added security patch for CVE-2006-3242 (#23424)
+- import mutt-1.5.11-3mdv2007.0
+
+* Wed May 31 2006 Pablo Saratxaga <pablo@mandriva.com> 1.5.11-3mdk
+- use aspell instead of ispell
+- set paths to gpg, so it works out of the box (if gpg installed)
+- corrected bug when calling external programs to view attached files
+
+* Sun Nov 13 2005 Oden Eriksson <oeriksson@mandriva.com> 1.5.11-2mdk
+- rebuilt against openssl-0.9.8a
+
+* Sat Oct 01 2005 Andreas Hasenack <andreas@mandriva.com> 1.5.10i-1mdk
+- updated to version 1.5.11 (no "i" from now on)
+- removed thread patch, already applied
+- updated nntp patch
+- updated compressed folders patch
+
+* Wed Aug 31 2005 Frederic Lepied <flepied@mandriva.com> 1.5.9i-9mdk
+- removed BuildRequires on ispell as it's not in main anymore
+
+* Wed Jul 27 2005 Nicolas Lécureuil <neoclust@mandriva.org> 1.5.9i-8mdk
+- Fix smtpdaemon on BuildRequire
+- %% mkrel
+
+* Tue Jul 12 2005 Andreas Hasenack <andreas@mandriva.com> 1.5.9i-7mdk
+- changed Requires from smtpdaemon to sendmail-command
+
+* Tue Apr 26 2005 Andreas Hasenack <andreas@mandrivalinux.com> 1.5.9i-6mdk
+- updated to version 1.5.9i
+- removed P5, it's already fixed in this version
+- updated compressed folder patch for this version
+- updated nntp patch for this version
+- removed hcache patch, the imap part is already applied and is actually
+  the more important one (maildir is already fast)
+- redid edit-threads patch for this version
+- updated save_history patch to version 1.5.6 (latest available at this time)
+- using current autoconf/automake now as it is compatible with the new nntp
+  patch version
+
+* Wed Mar 30 2005 Andreas Hasenack <andreas@mandrakesoft.com> 1.5.6i-5mdk
+- just a rebuild and a release increase, since the last package never went
+  into cooker
+
+* Sun Mar 13 2005 Andreas Hasenack <andreas@mandrakesoft.com> 1.5.6i-4mdk
+- added conditional sasl2 build (enabled by default) (Closes: #14221)
+- added configure options to honor kerberos build which was previously
+  only relying on a buildrequires
+- since mutt is built twice, use a shell function instead of calling
+  configure/make "inline"
+- added header cache patch with the Makefile.am hunk slightly modified
+  because of the nntp patch
+- added libdb4.2-devel buildrequires because of the header_cache patch.
+  This patch can use either BDB or GDBM: I prefer BDB.
+- added P5 to fix #13020
+
+* Wed Jan 12 2005 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 1.5.6i-3mdk
+- fix buildrequires
+
+* Wed Jun 02 2004 Marcel Pol <mpol@mandrake.org> 1.5.6i-2mdk
+- buildrequires autoconf2.1 (slbd)
+
+* Sat Apr 17 2004 Abel Cheung <deaddog@deaddog.org> 1.5.6i-1mdk
+- New version
+- Regen patches
+

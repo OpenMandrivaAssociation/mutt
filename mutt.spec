@@ -15,8 +15,6 @@
 # note that sasl2 includes kerberos support via sasl
 %define enable_sasl2	1
 
-%define _requires_exceptions perl(timelocal.pl)
-
 Name:		mutt
 Version:	1.5.21
 Release:	%{release}

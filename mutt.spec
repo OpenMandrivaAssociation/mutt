@@ -169,6 +169,7 @@ one you're going to use.
 %patch110 -p0 -b .CVE-2011-1429
 
 sed -i 's/AM_C_PROTOTYPES//g' configure.ac
+sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure.ac
 autoreconf -fi
 
 # Append changes to Muttrc to make use of bzip2/gzip mbox

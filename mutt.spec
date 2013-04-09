@@ -104,7 +104,7 @@ BuildRequires:  db-devel >= 5.2
 BuildRequires:	krb5-devel
 %endif
 %if %enable_sasl2
-BuildRequires:	libsasl-devel >= 2.1
+BuildRequires:	sasl-devel >= 2.1
 %endif
 
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}

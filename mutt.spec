@@ -16,7 +16,7 @@ Summary:	Text mode mail user agent
 Name:		mutt
 Epoch:		1
 Version:	1.5.21
-Release:	7
+Release:	8
 License:	GPLv2
 Group:		Networking/Mail
 Url:		http://www.mutt.org/

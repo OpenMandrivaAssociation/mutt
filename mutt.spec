@@ -15,8 +15,8 @@
 Summary:	Text mode mail user agent
 Name:		mutt
 Epoch:		1
-Version:	1.5.21
-Release:	13
+Version:	1.5.23
+Release:	1
 License:	GPLv2
 Group:		Networking/Mail
 Url:		http://www.mutt.org/
@@ -41,7 +41,7 @@ Patch1:		%{name}-1.3.15-tmpdef.patch
 Patch2:		%{name}-1.5.18-urlview.patch
 
 # Allow non root users to install mutt
-Patch3:		%{name}-1.5.5.1-no-sgid.patch
+Patch3:		%{name}-1.5.23-no-sgid.patch
 
 # Don't include /usr/include/ncurses if not building against normal ncurses
 Patch4:		%{name}-1.5.5.1-ncurses-include.patch
@@ -56,34 +56,33 @@ Patch6:		mutt-1.5.20-gpg.patch
 # stack is not defined under openssl 1.0.0 (http://dev.mutt.org/hg/mutt/rev/1cf34ea1f128)
 #Patch7:	mutt-1.5.20-stack.patch
 
-Patch8:		mutt-1.5.21-db51.patch
-
+Patch8:		mutt-1.5.23-db61.patch
 #
 # Patch 100- :	external patches
 #
 
 # Compressed folder support, http://www.spinnaker.de/mutt/compressed/
 # http://www.mutt.org.ua/download/mutt-%{pversion}/patch-%{pversion}.rr.compressed.gz
-Patch100:	patch-1.5.20.rr.compressed
+Patch100:	patch-1.5.23.rr.compressed
 
 # NNTP support
 # http://www.mutt.org.ua/download/mutt-%{version}/patch-%{version}.vvv.nntp.gz
-Patch101:	patch-1.5.20.vvv.nntp
+Patch101:	patch-1.5.23.vvv.nntp
 
 # Dynamically set xterm window title / icon name
-Patch104:	%{name}-1.5.5.1-xterm-title.patch
+Patch104:	%{name}-1.5.23-xterm-title.patch
 
 # Merged upstream
 #Patch107:	mutt-1.5.19-nulcert.diff
 
 # Now maintained at http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44
 # Patch adapted from:	patch-1.5.20.sidebar.20090619.txt
-Patch108:	mutt-1.5.20-sidebar.patch
+Patch108:	mutt-1.5.23-sidebar.patch
 
 # Patch adapted from:	http://greek0.net/mutt.html
-Patch109:	mutt-1.5.12-indexcolor-3+cb.diff
+Patch109:	mutt-1.5.23-indexcolor.patch
 
-Patch110:	mutt-1.5.21-CVE-2011-1429.diff
+Patch110:	mutt-1.5.23-CVE-2014-9116.patch
 
 BuildRequires:	sendmail-command
 BuildRequires:	bzip2-devel
@@ -148,13 +147,13 @@ one you're going to use.
 %patch3 -p0 -b .no-sgid
 %patch5 -p1 -b .mailcap
 %patch6 -p0 -b .gpg
-%patch8 -p0 -b .db5
+%patch8 -p1 -b .db61
 %patch100 -p1 -b .cfp
 %patch101 -p1 -b .nntp
 %patch104 -p1 -b .xterm-title
 %patch108 -p1
 %patch109 -p1
-%patch110 -p0 -b .CVE-2011-1429
+%patch110 -p1 -b .CVE-2011-1429
 
 sed -i 's/AM_C_PROTOTYPES//g' configure.ac
 sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure.ac

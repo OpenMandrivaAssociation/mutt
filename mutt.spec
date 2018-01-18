@@ -40,6 +40,8 @@ Patch1:		%{name}-1.3.15-tmpdef.patch
 # Tell user to install urlview instead of just barf at user
 Patch2:		%{name}-1.5.18-urlview.patch
 
+Patch3:		mutt-1.9.2-no-sgid.patch
+
 # fixes the viewing of MIME attached files when the mailcap
 # entry already uses quotes (eg:	"%s")
 Patch5:		mutt-1.5.11-mailcap.patch
@@ -118,6 +120,7 @@ one you're going to use.
 %setup -q
 %patch1 -p1 -b .tmpdef
 %patch2 -p1 -b .urlview
+%patch3 -p1 -b .sgid
 %patch5 -p1 -b .mailcap
 %patch6 -p0 -b .gpg
 %patch8 -p1 -b .db61

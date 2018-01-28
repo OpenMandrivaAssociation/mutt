@@ -15,7 +15,7 @@
 Summary:	Text mode mail user agent
 Name:		mutt
 Epoch:		1
-Version:	1.9.2
+Version:	1.9.3
 Release:	1
 License:	GPLv2
 Group:		Networking/Mail
@@ -236,9 +236,7 @@ update-alternatives --install %{_bindir}/mutt mutt %{_bindir}/mutt-normal 10
 %doc README* TODO UPDATING VERSION
 %doc mime.types.dist Muttrc.dist
 %config(noreplace) %{_sysconfdir}/Muttrc
-%{_bindir}/flea
 %{_bindir}/mutt-normal
-%{_bindir}/muttbug
 %{_bindir}/pgpewrap
 %{_bindir}/pgpring
 %{_bindir}/smime_keys

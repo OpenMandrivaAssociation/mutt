@@ -73,6 +73,8 @@ BuildRequires:	krb5-devel
 %if %enable_sasl2
 BuildRequires:	sasl-devel >= 2.1
 %endif
+BuildRequires:	xsltproc
+BuildRequires:	lynx
 # without it we have problems with attachments (e.g. .pdfs)
 Suggests:	mailcap
 Suggests:	mutt-utf8

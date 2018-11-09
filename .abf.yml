@@ -1,3 +1,6 @@
-sources:
-  mutt-Muttrc_compressed_folders.foot.bz2: bd1ee51559088a0922de0fad897ebb452d280ae1
+removed_sources:
   mutt-1.9.3.tar.gz: 13b025c0a4479129f2f9cb0933b87cb9a93dc420
+sources:
+  mutt-1.10.1.tar.gz: 584c3a5cd604813749da4d90c8c457a143ccd746
+  mutt-1.10.1.tar.gz.asc: 46c14adbefbde069cc4ff0a2f75d2466b25f7ffe
+  mutt-Muttrc_compressed_folders.foot.bz2: bd1ee51559088a0922de0fad897ebb452d280ae1

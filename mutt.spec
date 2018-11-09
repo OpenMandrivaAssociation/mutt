@@ -15,8 +15,8 @@
 Summary:	Text mode mail user agent
 Name:		mutt
 Epoch:		1
-Version:	1.9.3
-Release:	2
+Version:	1.10.1
+Release:	1
 License:	GPLv2
 Group:		Networking/Mail
 Url:		http://www.mutt.org/
@@ -56,7 +56,7 @@ Patch8:		mutt-1.5.23-db61.patch
 
 # NNTP support
 # http://www.mutt.org.ua/download/mutt-%{version}/patch-%{version}.vvv.nntp.gz
-Patch101:	patch-1.9.1.vvv.nntp
+Patch101:	patch-1.10.0.vvv.nntp
 
 Patch110:	mutt-1.5.23-CVE-2014-9116.patch
 
@@ -236,6 +236,8 @@ update-alternatives --install %{_bindir}/mutt mutt %{_bindir}/mutt-normal 10
 %doc README* TODO UPDATING VERSION
 %doc mime.types.dist Muttrc.dist
 %config(noreplace) %{_sysconfdir}/Muttrc
+%{_bindir}/flea
+%{_bindir}/muttbug
 %{_bindir}/mutt-normal
 %{_bindir}/pgpewrap
 %{_bindir}/pgpring

@@ -55,7 +55,7 @@ Patch8:		mutt-1.5.23-db61.patch
 #
 
 # NNTP support
-# http://www.mutt.org.ua/download/mutt-%{version}/patch-%{version}.vvv.nntp.gz
+# http://www.mutt.org.ua/download/mutt-{version}/patch-{version}.vvv.nntp.gz
 Patch101:	patch-1.10.0.vvv.nntp
 
 Patch110:	mutt-1.5.23-CVE-2014-9116.patch
@@ -232,9 +232,11 @@ fi
 update-alternatives --install %{_bindir}/mutt mutt %{_bindir}/mutt-normal 10
 
 %files -f %{name}.lang
-%doc BEWARE COPYRIGHT NEWS OPS* PATCHES*
-%doc README* TODO UPDATING VERSION
-%doc mime.types.dist Muttrc.dist
+%doc %{_docdir}/%{name}
+%exclude %{_docdir}/%{name}/samples
+%exclude %{_docdir}/%{name}/*.html
+%exclude %{_docdir}/%{name}/manual.txt
+
 %config(noreplace) %{_sysconfdir}/Muttrc
 %{_bindir}/flea
 %{_bindir}/muttbug
@@ -249,8 +251,6 @@ update-alternatives --install %{_bindir}/mutt mutt %{_bindir}/mutt-normal 10
 %{_bindir}/mutt-utf8
 
 %files doc
-%doc doc/manual.txt
-%doc doc/advancedusage.html doc/gettingstarted.html doc/tuning.html
-%doc doc/intro.html doc/mimesupport.html doc/reference.html
-%doc doc/configuration.html doc/index.html doc/miscellany.html
-
+%doc %{_docdir}/%{name}/samples 
+%doc %{_docdir}/%{name}/*.html 
+%doc %{_docdir}/%{name}/manual.txt

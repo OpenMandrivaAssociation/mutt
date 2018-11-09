@@ -75,6 +75,7 @@ BuildRequires:	sasl-devel >= 2.1
 %endif
 BuildRequires:	xsltproc
 BuildRequires:	lynx
+BuildRequires:	docbook-style-xsl
 # without it we have problems with attachments (e.g. .pdfs)
 Suggests:	mailcap
 Suggests:	mutt-utf8

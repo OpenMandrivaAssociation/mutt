@@ -64,6 +64,7 @@ BuildRequires:	db-devel >= 5.2
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(openssl)
+BuildRequires:	pkgconfig(libidn2)
 %if %enable_krb5
 BuildRequires:	krb5-devel
 %endif

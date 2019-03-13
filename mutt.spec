@@ -58,6 +58,7 @@ Patch110:	mutt-1.5.23-CVE-2014-9116.patch
 
 BuildRequires:	sendmail-command
 BuildRequires:	bzip2-devel
+BuildRequires:	gpgme-devel
 # required by the header cache patch
 BuildRequires:	db-devel >= 5.2
 BuildRequires:	pkgconfig(ncursesw)

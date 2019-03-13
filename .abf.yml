@@ -1,6 +1,7 @@
-removed_sources:
-  mutt-1.9.3.tar.gz: 13b025c0a4479129f2f9cb0933b87cb9a93dc420
 sources:
-  mutt-1.10.1.tar.gz: 584c3a5cd604813749da4d90c8c457a143ccd746
-  mutt-1.10.1.tar.gz.asc: 46c14adbefbde069cc4ff0a2f75d2466b25f7ffe
   mutt-Muttrc_compressed_folders.foot.bz2: bd1ee51559088a0922de0fad897ebb452d280ae1
+  patch-1.11.1.vvv.initials.xz: 02a22928784d3c8d04a23dec6f605dc0c9aaf6a2
+  patch-1.11.1.vvv.nntp_ru.xz: 10fa404e5cc139ec8cc2d9b97c7dafd5e9a83178
+  patch-1.11.1.vvv.nntp.xz: 4af038d560005611082822a6ffb016d8544df422
+  patch-1.11.1.vvv.quote.xz: 3ceb33fe27c553f96b9bc8a150107711042cbe72
+  mutt-1.11.4.tar.gz: 969d099ff31c42d63768e5011698ad4a0dffc840

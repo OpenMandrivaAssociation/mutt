@@ -60,7 +60,7 @@ BuildRequires:	sendmail-command
 BuildRequires:	bzip2-devel
 BuildRequires:	gpgme-devel
 # required by the header cache patch
-BuildRequires:	db-devel >= 5.2
+BuildRequires:	db-devel
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(openssl)

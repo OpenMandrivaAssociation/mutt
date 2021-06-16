@@ -41,7 +41,7 @@ Patch3:		mutt-1.9.2-no-sgid.patch
 #Patch5:		mutt-1.5.11-mailcap.patch
 
 # defines gpg paths, aspell, and fallback charsets
-Patch6:		mutt-1.5.20-gpg.patch
+#Patch6:		mutt-1.5.20-gpg.patch
 
 Patch8:		mutt-1.5.23-db61.patch
 #

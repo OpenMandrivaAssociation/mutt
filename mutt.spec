@@ -9,13 +9,13 @@
 
 Summary:	Text mode mail user agent
 Name:		mutt
-Version:	1.11.4
+Version:	2.1.0
 Release:	1
 License:	GPLv2
 Group:		Networking/Mail
 Url:		http://www.mutt.org/
-Source0:	ftp://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz
-Source1:	ftp://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz.asc
+Source0:	http://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz
+Source1:	http://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz.asc
 # To make use of bzip2/gzip files
 Source10:	%{name}-Muttrc_compressed_folders.foot.bz2
 #
@@ -38,23 +38,17 @@ Patch3:		mutt-1.9.2-no-sgid.patch
 
 # fixes the viewing of MIME attached files when the mailcap
 # entry already uses quotes (eg:	"%s")
-Patch5:		mutt-1.5.11-mailcap.patch
+#Patch5:		mutt-1.5.11-mailcap.patch
 
 # defines gpg paths, aspell, and fallback charsets
-Patch6:		mutt-1.5.20-gpg.patch
+#Patch6:		mutt-1.5.20-gpg.patch
 
-Patch8:		mutt-1.5.23-db61.patch
+#Patch8:		mutt-1.5.23-db61.patch
 #
 # Patch 100- :	external patches
 #
 
 # Patches from http://www.mutt.org.ua/download/
-Patch100:	https://www.mutt.org.ua/download/mutt-1.11.1/patch-1.11.1.vvv.initials.xz
-Patch101:	https://www.mutt.org.ua/download/mutt-1.11.1/patch-1.11.1.vvv.nntp.xz
-Patch102:	https://www.mutt.org.ua/download/mutt-1.11.1/patch-1.11.1.vvv.nntp_ru.xz
-Patch103:	https://www.mutt.org.ua/download/mutt-1.11.1/patch-1.11.1.vvv.quote.xz
-
-Patch110:	mutt-1.5.23-CVE-2014-9116.patch
 
 BuildRequires:	sendmail-command
 BuildRequires:	bzip2-devel

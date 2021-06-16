@@ -43,7 +43,7 @@ Patch3:		mutt-1.9.2-no-sgid.patch
 # defines gpg paths, aspell, and fallback charsets
 #Patch6:		mutt-1.5.20-gpg.patch
 
-Patch8:		mutt-1.5.23-db61.patch
+#Patch8:		mutt-1.5.23-db61.patch
 #
 # Patch 100- :	external patches
 #

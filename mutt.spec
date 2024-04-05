@@ -68,6 +68,7 @@ BuildRequires:	sasl-devel >= 2.1
 BuildRequires:	xsltproc
 BuildRequires:	lynx
 BuildRequires:	docbook-style-xsl
+BuildRequires:	locales-extra-charsets
 # without it we have problems with attachments (e.g. .pdfs)
 Suggests:	mailcap
 %rename %{name}-utf8

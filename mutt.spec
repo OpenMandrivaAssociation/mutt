@@ -13,7 +13,7 @@ Version:	2.2.13
 Release:	1
 License:	GPLv2
 Group:		Networking/Mail
-Url:		http://www.mutt.org/
+Url:		https://www.mutt.org/
 Source0:	http://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz
 Source1:	http://ftp.mutt.org/pub/mutt/%{name}-%{version}.tar.gz.asc
 # To make use of bzip2/gzip files

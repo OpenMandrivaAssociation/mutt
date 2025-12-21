@@ -50,6 +50,11 @@ Patch3:		mutt-1.9.2-no-sgid.patch
 
 # Patches from http://www.mutt.org.ua/download/
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	sendmail-command
 BuildRequires:	bzip2-devel
 BuildRequires:	gpgme-devel

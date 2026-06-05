@@ -10,7 +10,7 @@
 Summary:	Text mode mail user agent
 Name:		mutt
 Version:	2.2.14
-Release:	1
+Release:	2
 License:	GPLv2
 Group:		Networking/Mail
 Url:		https://www.mutt.org/

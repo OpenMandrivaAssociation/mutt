@@ -1,6 +1,6 @@
---- mutt-1.9.2/Makefile.am.orig	2018-01-18 10:56:22.065373277 +0000
-+++ mutt-1.9.2/Makefile.am	2018-01-18 10:56:28.696150646 +0000
-@@ -161,11 +161,6 @@
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -180,11 +180,6 @@
  		rm -f $(DESTDIR)$(bindir)/mutt.dotlock ;		\
  		ln -sf $(DESTDIR)$(bindir)/mutt_dotlock $(DESTDIR)$(bindir)/mutt.dotlock ; \
  	fi

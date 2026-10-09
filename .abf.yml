@@ -1,3 +1,4 @@
 sources:
-  mutt-2.4.1.tar.gz: 493f61866201547014f86fe7be79598ae1075b83
   mutt-Muttrc_compressed_folders.foot.bz2: bd1ee51559088a0922de0fad897ebb452d280ae1
+  mutt-2.4.3.tar.gz: ada3a08b30102e8e1b9d80ee6be24ce4fffa505d
+  mutt-2.4.3.tar.gz.asc: 97f74b48905b1d8d255432edfdb613b660243239
